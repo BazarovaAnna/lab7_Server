@@ -8,6 +8,7 @@ import model.Pancakes;
 import model.PansNames;
 import model.Size;
 import server.SampleServer;
+import server.Windows1251Control;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -15,6 +16,8 @@ import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.TreeSet;
 
 public class PansTree extends JPanel
@@ -26,7 +29,8 @@ public class PansTree extends JPanel
     private static DynamicTree treePanel;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
     private JTextField textField;
-
+    Locale locale = Locale.getDefault();
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
 
     public PansTree() {
         super(new BorderLayout());
@@ -35,15 +39,15 @@ public class PansTree extends JPanel
         treePanel = new DynamicTree();
         populateTree(treePanel);
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = new JButton(rb.getString("Add"));
         addButton.setActionCommand(ADD_COMMAND);
         addButton.addActionListener(this);
 
-        JButton removeButton = new JButton("Remove");
+        JButton removeButton = new JButton(rb.getString("Remove"));
         removeButton.setActionCommand(REMOVE_COMMAND);
         removeButton.addActionListener(this);
 
-        JButton clearButton = new JButton("Clear");
+        JButton clearButton = new JButton(rb.getString("Clear"));
         clearButton.setActionCommand(CLEAR_COMMAND);
         clearButton.addActionListener(this);
 
@@ -70,13 +74,13 @@ public class PansTree extends JPanel
 
     private void populateTree(DynamicTree treePanel) {
 
-        String category1Name = "By COLOR";
+        String category1Name = rb.getString("ByColor");
         DefaultMutableTreeNode category1;
         category1 = treePanel.addObject(null, category1Name);
-        String type11Name = "YELLOW";
-        String type12Name = "BROWN";
-        String type13Name = "BLUE";
-        String type14Name = "RED";
+        String type11Name = rb.getString("YELLOW");
+        String type12Name = rb.getString("BROWN");
+        String type13Name = rb.getString("BLUE");
+        String type14Name = rb.getString("RED");
         DefaultMutableTreeNode type11, type12, type13, type14;
         type11 = treePanel.addObject(category1, type11Name);
         type12 = treePanel.addObject(category1, type12Name);
@@ -103,12 +107,12 @@ public class PansTree extends JPanel
 
         }
 
-        String category2Name = "By SIZE";
+        String category2Name = rb.getString("BySIZE");
         DefaultMutableTreeNode category2;
         category2 = treePanel.addObject(null, category2Name);
-        String type21Name = "BIG";
-        String type22Name = "MEDIUM";
-        String type23Name = "SMALL";
+        String type21Name = rb.getString("BIG");
+        String type22Name = rb.getString("MEDIUM");
+        String type23Name = rb.getString("SMALL");
         DefaultMutableTreeNode type21, type22, type23;
         type21 = treePanel.addObject(category2, type21Name);
         type22 = treePanel.addObject(category2, type22Name);
@@ -128,13 +132,13 @@ public class PansTree extends JPanel
             }
         }
 
-        String category3Name = "By TYPE";
+        String category3Name = rb.getString("ByTYPE");
         DefaultMutableTreeNode category3;
         category3 = treePanel.addObject(null, category3Name);
-        String type31Name = "BANANA";
-        String type32Name = "CHOCOLATE";
-        String type33Name = "VANILLA";
-        String type34Name = "USUAL";
+        String type31Name = rb.getString("BANANA");
+        String type32Name = rb.getString("CHOCOLATE");
+        String type33Name = rb.getString("VANILLA");
+        String type34Name = rb.getString("USUAL");
         DefaultMutableTreeNode type31, type32, type33, type34;
         type31 = treePanel.addObject(category3, type31Name);
         type32 = treePanel.addObject(category3, type32Name);
@@ -146,7 +150,6 @@ public class PansTree extends JPanel
 
         {
             Pancakes o = SampleServer.pl.Mo.get(key);
-            DefaultMutableTreeNode pancake = new DefaultMutableTreeNode(o.toString());
             if (o.name.equals(PansNames.BANANA)) {
                 treePanel.addObject(type31, o.toString());
             } else if (o.name.equals(PansNames.CHOC)) {
@@ -158,7 +161,7 @@ public class PansTree extends JPanel
             }
         }
 
-        String category4Name = "ALL";
+        String category4Name = rb.getString("ALL");
         DefaultMutableTreeNode category4;
         category4 = treePanel.addObject(null, category4Name);
 

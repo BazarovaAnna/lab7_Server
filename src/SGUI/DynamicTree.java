@@ -2,6 +2,7 @@ package SGUI;
 
 import manage.Commands;
 import model.Pancakes;
+import server.Windows1251Control;
 
 import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
@@ -9,18 +10,22 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
 import java.awt.*;
 import java.util.Hashtable;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 class DynamicTree extends JPanel {
     private DefaultMutableTreeNode rootNode;
     static DefaultTreeModel treeModel;
     private JTree tree;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
+    Locale locale = Locale.getDefault();
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
 
 
     DynamicTree() {
         super(new GridLayout(1, 0));
 
-        rootNode = new DefaultMutableTreeNode("The Pancakes Collection");
+        rootNode = new DefaultMutableTreeNode(rb.getString("Pancol"));
         treeModel = new DefaultTreeModel(rootNode);
         treeModel.addTreeModelListener(new MyTreeModelListener());
         tree = new JTree(treeModel);
