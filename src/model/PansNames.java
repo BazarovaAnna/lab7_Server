@@ -1,16 +1,23 @@
 package model;
 
+import server.Windows1251Control;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum PansNames {
-    PAN("pancakes", 1),
-    CHOC("chocolate pancakes", 2),
-    VANILLA("pancakes with vanilla", 3),
-    BANANA("pancakes with banana", 4);
+    PAN("USUAL", 1),
+    CHOC("CHOCOLATE", 2),
+    VANILLA("VANILLA", 3),
+    BANANA("BANANA", 4);
 
     int panNum;
     private final String descr;
 
     PansNames(String s, int e) {
-        descr = s;
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        descr = rb.getString(s);
         panNum = e;
     }
 

@@ -1,15 +1,24 @@
 package model;
 
+import server.Windows1251Control;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum Size {
-    BIG("huge", 3),
-    MEDIUM("medium", 2),
-    SMALL("small", 1);
+
+    BIG("BIG", 3),
+    MEDIUM("MEDIUM", 2),
+    SMALL("SMALL", 1);
 
     public int sizeNum;
     private final String descr;
 
+
     Size(String s, int e) {
-        descr = s;
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        descr = rb.getString(s);
         sizeNum = e;
     }
 

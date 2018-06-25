@@ -18,19 +18,24 @@ public class Menu implements ActionListener {
     private static String READ_COMMAND = "read";
     private static String SAVE_COMMAND = "save";
     private static String UPDATE_COMMAND = "update";
+    private static String RUS = "rus";
+    private static String ROU = "rou";
+    private static String ENG = "eng";
+    private static String SWE = "swe";
+
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
     Locale locale = Locale.getDefault();
     ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
 
     public JMenuBar createMenuBar() {
         JMenuBar menuBar;
-        JMenu menu;
+
 
         //Create the menu bar.
         menuBar = new JMenuBar();
 
         //Build the first menu.
-        menu = new JMenu(rb.getString("Menu"));
+        JMenu menu = new JMenu(rb.getString("Menu"));
         menu.setMnemonic(KeyEvent.VK_M);
         menuBar.add(menu);
 
@@ -62,6 +67,46 @@ public class Menu implements ActionListener {
         menuItem3.addActionListener(this);
         menu.add(menuItem3);
 
+        JMenu menu1 = new JMenu(rb.getString("Language"));
+        menu1.setMnemonic(KeyEvent.VK_L);
+        menuBar.add(menu1);
+
+        JMenuItem menuItem4 = new JMenuItem(rb.getString("eng"),
+                KeyEvent.VK_E);
+
+        menuItem4.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        menuItem4.setActionCommand(ENG);
+        menuItem4.addActionListener(this);
+        menu1.add(menuItem4);
+
+        JMenuItem menuItem5 = new JMenuItem(rb.getString("rus"),
+                KeyEvent.VK_R);
+
+        menuItem5.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        menuItem5.setActionCommand(RUS);
+        menuItem5.addActionListener(this);
+        menu1.add(menuItem5);
+
+        JMenuItem menuItem6 = new JMenuItem(rb.getString("rou"),
+                KeyEvent.VK_O);
+
+        menuItem6.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_3, ActionEvent.ALT_MASK));
+        menuItem6.setActionCommand(ROU);
+        menuItem6.addActionListener(this);
+        menu1.add(menuItem6);
+
+        JMenuItem menuItem7 = new JMenuItem(rb.getString("swe"),
+                KeyEvent.VK_S);
+
+        menuItem7.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_4, ActionEvent.ALT_MASK));
+        menuItem7.setActionCommand(SWE);
+        menuItem7.addActionListener(this);
+        menu1.add(menuItem7);
+
         return menuBar;
     }
 
@@ -84,6 +129,22 @@ public class Menu implements ActionListener {
         } else if (UPDATE_COMMAND.equals(command)) {
             //Update button clicked.
             (ServerGUI.tree.getModel()).reload();
+            ServerGUI.frame.repaint();
+        } else if(ROU.equals(command)){
+            Locale.setDefault(new Locale("ro","RO"));
+            Commands.read(SampleServer.pl.Mo);
+            ServerGUI.frame.repaint();
+        }else if(RUS.equals(command)){
+            Locale.setDefault(new Locale("ru","RU"));
+            Commands.read(SampleServer.pl.Mo);
+            ServerGUI.frame.repaint();
+        }else if(SWE.equals(command)){
+            Locale.setDefault(new Locale("sv","SE"));
+            Commands.read(SampleServer.pl.Mo);
+            ServerGUI.frame.repaint();
+        }else if(ENG.equals(command)){
+            Locale.setDefault(new Locale("en","GB"));
+            Commands.read(SampleServer.pl.Mo);
             ServerGUI.frame.repaint();
         }
     }

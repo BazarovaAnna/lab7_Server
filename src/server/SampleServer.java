@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class SampleServer //extends Thread
@@ -18,6 +19,7 @@ public class SampleServer //extends Thread
     public static PansCollection pl;
 
     public static void main(String args[]) {
+
         //создание коллекции и заполнение
         pl = new PansCollection();
         Commands.read(pl.Mo);
@@ -31,7 +33,7 @@ public class SampleServer //extends Thread
             System.out.println("**Server is started");
             //поток обработки команд сервера
             new Thread(new ServerCommands(pl, Clients, threads)).start();
-            //new Thread(new TimeSave(pl)).start();
+            new Thread(new TimeSave(pl)).start();
 
             while (true) {
 

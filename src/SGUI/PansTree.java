@@ -1,9 +1,7 @@
 package SGUI;
 
 
-import manage.Commands;
-import manage.JasonException;
-import manage.Parse;
+import manage.*;
 import model.Pancakes;
 import model.PansNames;
 import model.Size;
