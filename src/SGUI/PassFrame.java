@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 public class PassFrame extends JFrame {
     Locale locale = Locale.getDefault();
     ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+
     public PassFrame(JFrame frame) {
         super();
         setTitle(rb.getString("EnterPassword"));

@@ -31,7 +31,7 @@ public class SampleServer //extends Thread
             System.out.println("**Server is started");
             //поток обработки команд сервера
             new Thread(new ServerCommands(pl, Clients, threads)).start();
-            new Thread(new TimeSave(pl)).start();
+            //new Thread(new TimeSave(pl)).start();
 
             while (true) {
 

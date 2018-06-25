@@ -1,17 +1,23 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Pancakes implements Comparable<Pancakes> {
     public PansNames name;
     public Size size;
     public Integer id;
     public String location;
     public String color;
+    public LocalDateTime time;
 
     public Pancakes(Size size, PansNames name, Integer id, String location) {
         this.name = name;
         this.size = size;
         this.id = id;
         this.location = location;
+        time = LocalDateTime.of(LocalDate.now(), LocalTime.now());
         if (this.name.equals(PansNames.BANANA)) {
             this.color = "YELLOW";
         } else if (this.name.equals(PansNames.CHOC)) {

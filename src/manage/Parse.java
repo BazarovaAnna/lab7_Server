@@ -10,6 +10,7 @@ public class Parse {
     public static Size Size;
     public static String Location;
 
+
     static void deserializeXML(String inputStr) throws XmlException {
         inputStr = inputStr.trim().toUpperCase();
         inputStr = inputStr.replaceAll("[\\s]{2,}", " ");
