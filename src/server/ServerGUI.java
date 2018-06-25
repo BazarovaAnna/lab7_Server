@@ -7,24 +7,28 @@ import SGUI.PassFrame;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ServerGUI extends Thread {
     public static PansTree tree;
     public static JFrame frame;
+    Locale locale = Locale.getDefault();
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
 
     @Override
     public void run() {
 
-        frame = new JFrame("Server");
+        frame = new JFrame(rb.getString("Server"));
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (JOptionPane.showConfirmDialog(e.getComponent(), "Do u want to go finish?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                    if (JOptionPane.showConfirmDialog(e.getComponent(), "Leave server working?", "Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                        frame.dispose();
-                    } else {
+                if (JOptionPane.showConfirmDialog(e.getComponent(), rb.getString("GoFinish"), rb.getString("Exit"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+                    if (JOptionPane.showConfirmDialog(e.getComponent(), rb.getString("StopServer"), rb.getString("Exit"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                         System.exit(0);
+                    } else {
+                        frame.dispose();
                     }
                 }
             }
