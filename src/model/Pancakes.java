@@ -1,8 +1,11 @@
 package model;
 
+import server.SampleServer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Pancakes implements Comparable<Pancakes> {
     public PansNames name;

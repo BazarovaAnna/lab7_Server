@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 import java.util.TreeSet;
 
 public class PansTree extends JPanel
-        implements ActionListener {
+        implements ActionListener{
     private int newNodeSuffix = 1;
     private static String ADD_COMMAND = "add";
     private static String REMOVE_COMMAND = "remove";
@@ -27,12 +27,11 @@ public class PansTree extends JPanel
     private static DynamicTree treePanel;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
     private JTextField textField;
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
 
     public PansTree() {
         super(new BorderLayout());
-
+        Locale.setDefault(SampleServer.locale);
         //Create the components.
         treePanel = new DynamicTree();
         populateTree(treePanel);
@@ -184,7 +183,7 @@ public class PansTree extends JPanel
                     Parse.deserialaize(data);
                     Pancakes pan = new Pancakes(Parse.Size, Parse.Name, Parse.Id, Parse.Location);
                     treePanel.addObject(pan);
-                } catch (JasonException exc) {
+                } catch (Exception exc) {
                     toolkit.beep();
                 }
             } else {

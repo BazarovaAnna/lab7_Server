@@ -1,7 +1,9 @@
 package SGUI;
 
-import manage.Commands;
+import manage.*;
 import model.Pancakes;
+import server.SampleServer;
+import server.ServerGUI;
 import server.Windows1251Control;
 
 import javax.swing.*;
@@ -13,18 +15,16 @@ import java.util.Hashtable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-class DynamicTree extends JPanel {
+class DynamicTree extends JPanel{
     private DefaultMutableTreeNode rootNode;
     static DefaultTreeModel treeModel;
     private JTree tree;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
 
 
     DynamicTree() {
         super(new GridLayout(1, 0));
-
         rootNode = new DefaultMutableTreeNode(rb.getString("Pancol"));
         treeModel = new DefaultTreeModel(rootNode);
         treeModel.addTreeModelListener(new MyTreeModelListener());

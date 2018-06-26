@@ -24,8 +24,7 @@ public class Menu implements ActionListener {
     private static String SWE = "swe";
 
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
 
     public JMenuBar createMenuBar() {
         JMenuBar menuBar;
@@ -130,22 +129,30 @@ public class Menu implements ActionListener {
             //Update button clicked.
             (ServerGUI.tree.getModel()).reload();
             ServerGUI.frame.repaint();
-        }/* else if(ROU.equals(command)){
-            Locale.setDefault(new Locale("ro","RO"));
+        } else if(ROU.equals(command)){
+            SampleServer.locale=new Locale("ro","RO");
             Commands.read(SampleServer.pl.Mo);
-            ServerGUI.frame.repaint();
+            SampleServer.sgui.close();
+            SampleServer.sgui = new ServerGUI();
+            SampleServer.sgui.start();
         }else if(RUS.equals(command)){
-            Locale.setDefault(new Locale("ru","RU"));
+            SampleServer.locale=new Locale("ru","RU");
             Commands.read(SampleServer.pl.Mo);
-            ServerGUI.frame.repaint();
+            SampleServer.sgui.close();
+            SampleServer.sgui = new ServerGUI();
+            SampleServer.sgui.start();
         }else if(SWE.equals(command)){
-            Locale.setDefault(new Locale("sv","SE"));
+            SampleServer.locale=new Locale("sv","SE");
             Commands.read(SampleServer.pl.Mo);
-            ServerGUI.frame.repaint();
+            SampleServer.sgui.close();
+            SampleServer.sgui = new ServerGUI();
+            SampleServer.sgui.start();
         }else if(ENG.equals(command)){
-            Locale.setDefault(new Locale("en","GB"));
+            SampleServer.locale=new Locale("en","GB");
             Commands.read(SampleServer.pl.Mo);
-            ServerGUI.frame.repaint();
-        }*/
+            SampleServer.sgui.close();
+            SampleServer.sgui = new ServerGUI();
+            SampleServer.sgui.start();
+        }
     }
 }

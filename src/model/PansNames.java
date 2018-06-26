@@ -1,5 +1,6 @@
 package model;
 
+import server.SampleServer;
 import server.Windows1251Control;
 
 import java.util.Locale;
@@ -15,8 +16,7 @@ public enum PansNames {
     private final String descr;
 
     PansNames(String s, int e) {
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
         descr = rb.getString(s);
         panNum = e;
     }

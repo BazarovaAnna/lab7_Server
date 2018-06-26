@@ -1,5 +1,6 @@
 package SGUI;
 
+import server.SampleServer;
 import server.Windows1251Control;
 
 import javax.swing.*;
@@ -10,8 +11,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PassFrame extends JFrame {
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
 
     public PassFrame(JFrame frame) {
         super();

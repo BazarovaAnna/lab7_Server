@@ -17,14 +17,16 @@ public class SampleServer //extends Thread
     private static List<NewClient> Clients = new ArrayList();
     private static Map<Thread, StackTraceElement[]> threads = Thread.getAllStackTraces();
     public static PansCollection pl;
+    public static Locale locale=Locale.getDefault();
+    public static ServerGUI sgui;
 
     public static void main(String args[]) {
 
         //создание коллекции и заполнение
+        Locale.setDefault(locale);
         pl = new PansCollection();
         Commands.read(pl.Mo);
-
-        ServerGUI sgui = new ServerGUI();
+        sgui = new ServerGUI();
         sgui.start();
         try {   //инициализация сокета
             ServerSocket server = new ServerSocket(8891, 0,

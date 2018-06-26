@@ -13,12 +13,10 @@ import java.util.ResourceBundle;
 public class ServerGUI extends Thread {
     public static PansTree tree;
     public static JFrame frame;
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleServer.locale, new Windows1251Control());
 
     @Override
     public void run() {
-
         frame = new JFrame(rb.getString("Server"));
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
@@ -51,6 +49,10 @@ public class ServerGUI extends Thread {
         PassFrame pf = new PassFrame(frame);
         pf.pack();
         pf.setVisible(true);
+    }
+    public void close(){
+        frame.dispose();
+        interrupt();
     }
 
 }
