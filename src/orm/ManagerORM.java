@@ -136,7 +136,7 @@ public class ManagerORM<T> extends AbstractManagerORM<T> {
             System.out.println(query);
         }catch (SQLException e){
             //e.printStackTrace();
-            System.out.println(e.getSQLState());
+            //System.out.println(e.getSQLState());
             if (e.getSQLState().equals(TABLE_ALREADY_EXIST_CODE)) {
 
                 try {

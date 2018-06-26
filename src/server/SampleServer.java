@@ -1,6 +1,7 @@
 package server;
 
 import manage.Commands;
+import model.Pancakes;
 import orm.DatabaseProtocol;
 import orm.ManagerORM;
 import orm.PansDataBase;
@@ -8,10 +9,9 @@ import orm.PansDataBase;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.text.DateFormat;
+import java.time.ZoneOffset;
+import java.util.*;
 
 public class SampleServer //extends Thread
 {
@@ -22,17 +22,24 @@ public class SampleServer //extends Thread
     public static PansCollection pl;
     public static Locale locale=Locale.getDefault();
     public static ServerGUI sgui;
+    static DateFormat fmt= DateFormat.getDateTimeInstance (DateFormat.FULL, DateFormat.MEDIUM, Locale.getDefault());
 
     public static void main(String args[]) {
-        DatabaseProtocol.getData();
 
-        ManagerORM<PansDataBase> managerORM = new ManagerORM<>(PansDataBase.class, DatabaseProtocol.url, DatabaseProtocol.login, DatabaseProtocol.password);
-        managerORM.create();
-        managerORM.insert(new PansDataBase(1, new PansDataBase(2, null)));
-        //создание коллекции и заполнение
+        DatabaseProtocol.getData();
         Locale.setDefault(locale);
         pl = new PansCollection();
         Commands.read(pl.Mo);
+        ManagerORM<PansDataBase> managerORM = new ManagerORM<>(PansDataBase.class, DatabaseProtocol.url, DatabaseProtocol.login, DatabaseProtocol.password);
+        managerORM.create();
+        for (Integer i:new TreeSet<Integer>(pl.Mo.keySet())) {
+            Pancakes pan = pl.Mo.get(i);
+            PansDataBase pd=new PansDataBase(pan.id,pan.name,pan.size,pan.location,fmt.format(Date.from(pan.time.toInstant(ZoneOffset.UTC))),pan.color);
+            managerORM.insert(pd);
+        }
+        //managerORM.insert(new PansDataBase(1, new PansDataBase(2, null)));
+        //создание коллекции и заполнение
+
         sgui = new ServerGUI();
         sgui.start();
         try {   //инициализация сокета
