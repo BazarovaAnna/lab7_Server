@@ -1,6 +1,9 @@
 package server;
 
 import manage.Commands;
+import orm.DatabaseProtocol;
+import orm.ManagerORM;
+import orm.PansDataBase;
 
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -21,7 +24,11 @@ public class SampleServer //extends Thread
     public static ServerGUI sgui;
 
     public static void main(String args[]) {
+        DatabaseProtocol.getData();
 
+        ManagerORM<PansDataBase> managerORM = new ManagerORM<>(PansDataBase.class, DatabaseProtocol.url, DatabaseProtocol.login, DatabaseProtocol.password);
+        managerORM.create();
+        managerORM.insert(new PansDataBase(1, new PansDataBase(2, null)));
         //создание коллекции и заполнение
         Locale.setDefault(locale);
         pl = new PansCollection();

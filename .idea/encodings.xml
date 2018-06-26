@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-16">
+    <file url="file://$PROJECT_DIR$/src/model/ActionsAndAll.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/FrekenBok.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/Karlson.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/Little.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/PansNames.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/PossibleActions.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/model/Size.java" charset="windows-1251" />
+  </component>
+</project>
