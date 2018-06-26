@@ -130,7 +130,7 @@ public class Menu implements ActionListener {
             //Update button clicked.
             (ServerGUI.tree.getModel()).reload();
             ServerGUI.frame.repaint();
-        } else if(ROU.equals(command)){
+        }/* else if(ROU.equals(command)){
             Locale.setDefault(new Locale("ro","RO"));
             Commands.read(SampleServer.pl.Mo);
             ServerGUI.frame.repaint();
@@ -146,6 +146,6 @@ public class Menu implements ActionListener {
             Locale.setDefault(new Locale("en","GB"));
             Commands.read(SampleServer.pl.Mo);
             ServerGUI.frame.repaint();
-        }
+        }*/
     }
 }
