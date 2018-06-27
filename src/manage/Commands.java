@@ -1,12 +1,19 @@
 package manage;
 
 import model.Pancakes;
+import orm.DatabaseProtocol;
+import orm.ManagerORM;
+import orm.PansDataBase;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.time.ZoneOffset;
+import java.util.Date;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.TreeSet;
 
 public class Commands {
@@ -88,7 +95,7 @@ public class Commands {
         boolean f = false;
         try {
             Parse.deserialaize(data);
-        } catch (JasonException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         for (Integer i : new TreeSet<>(Pl.keySet())) {
@@ -145,7 +152,7 @@ public class Commands {
             } else {
                 output = "Object is not min";
             }
-        } catch (JasonException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return output;
@@ -157,6 +164,15 @@ public class Commands {
      * @param Pl -сохраняемая коллекция
      */
     public static void write(Hashtable<Integer, Pancakes> Pl) {
+        DateFormat fmt= DateFormat.getDateTimeInstance (DateFormat.FULL, DateFormat.MEDIUM, Locale.getDefault());
+        ManagerORM<PansDataBase> managerORM = new ManagerORM<>(PansDataBase.class, DatabaseProtocol.url, DatabaseProtocol.login, DatabaseProtocol.password);
+        managerORM.dropTable();
+        managerORM.create();
+        for (Integer i:new TreeSet<Integer>(Pl.keySet())) {
+            Pancakes pan = Pl.get(i);
+            PansDataBase pd=new PansDataBase(pan.id,pan.name,pan.size,pan.location,fmt.format(Date.from(pan.time.toInstant(ZoneOffset.UTC))),pan.color);
+            managerORM.insert(pd);
+        }
         try (PrintWriter pw = new PrintWriter("blins.xml")) {
             int i = 0;
             for (Integer key : new TreeSet<>(Pl.keySet())) {
@@ -198,7 +214,7 @@ public class Commands {
             Pancakes pp = new Pancakes(Parse.Size, Parse.Name, Parse.Id, Parse.Location);
             Pl.put(key, pp);
             return "Object number " + key + " is inserted: " + pp;
-        } catch (JasonException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return output;

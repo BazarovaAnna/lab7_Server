@@ -29,14 +29,14 @@ public class SampleServer //extends Thread
         DatabaseProtocol.getData();
         Locale.setDefault(locale);
         pl = new PansCollection();
-        Commands.read(pl.Mo);
+        /*Commands.read(pl.Mo);
         ManagerORM<PansDataBase> managerORM = new ManagerORM<>(PansDataBase.class, DatabaseProtocol.url, DatabaseProtocol.login, DatabaseProtocol.password);
         managerORM.create();
         for (Integer i:new TreeSet<Integer>(pl.Mo.keySet())) {
             Pancakes pan = pl.Mo.get(i);
             PansDataBase pd=new PansDataBase(pan.id,pan.name,pan.size,pan.location,fmt.format(Date.from(pan.time.toInstant(ZoneOffset.UTC))),pan.color);
             managerORM.insert(pd);
-        }
+        }*/
         //managerORM.insert(new PansDataBase(1, new PansDataBase(2, null)));
         //создание коллекции и заполнение
 

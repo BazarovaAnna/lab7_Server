@@ -66,8 +66,5 @@ public class PansDataBase {
         return size;
     }
 
-    public String getColor() {
-        return color;
-    }
 
 }

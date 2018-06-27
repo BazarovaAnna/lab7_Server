@@ -133,7 +133,7 @@ public class ManagerORM<T> extends AbstractManagerORM<T> {
         }
         try {
             getConnection().createStatement().execute(query);
-            System.out.println(query);
+            //System.out.println(query);
         }catch (SQLException e){
             //e.printStackTrace();
             //System.out.println(e.getSQLState());
@@ -181,7 +181,7 @@ public class ManagerORM<T> extends AbstractManagerORM<T> {
         result.deleteCharAt(result.length()-1);
         result.append(")");
         try {
-            System.out.println(result.toString());
+            //System.out.println(result.toString());
             getConnection().createStatement().executeUpdate(result.toString());
             return true;
         }catch (SQLException e){

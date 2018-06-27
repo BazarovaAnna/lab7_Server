@@ -10,7 +10,7 @@ public class TableAlreadyExistSQLException extends SQLException {
 
     @Override
     public String getMessage(){
-        return "Таблица "+getNameTable()+" уже сущестует";
+        return "Таблица "+getNameTable()+" уже существует";
     }
 
     public String getNameTable() {
